@@ -8,6 +8,9 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#25292e"
+    },
     "ios": {
       "supportsTablet": true
     },
