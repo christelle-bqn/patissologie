@@ -1,30 +1,38 @@
-import { View, FlatList, StyleSheet } from "react-native";
-import RecipeCard from "../../components/ui/RecipeCard";
-import { RECIPES } from "../../data/recipes";
+import { View, FlatList, StyleSheet, Text } from "react-native";
+import RecipeCard from "@/components/RecipeCard";
+import { useRecipesContext } from "@/context/RecipesContext";
 
-export default function Index() {
+const index = () => {
+  const recipesContext = useRecipesContext();
+
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Recettes</Text>
       <FlatList
-        data={RECIPES}
+        horizontal
+        data={recipesContext.recipes}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <RecipeCard
-            title={item.title}
-            time={item.time}
-            difficulty={item.difficulty}
-            image={item.image}
-          />
-        )}
+        renderItem={({ item }) => <RecipeCard recipe={item} />}
+        showsHorizontalScrollIndicator={false}
       />
+
+      <Text style={styles.title}>Un peu d'histoire</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
+    flexDirection: "column",
+  },
+  title: {
+    fontSize: 20,
+    marginVertical: 10,
+    color: "#a47a4b",
+    marginLeft: 20,
   },
 });
+
+export default index;
