@@ -1,8 +1,10 @@
-import { Stack } from "expo-router/stack";
 import { setStatusBarStyle } from "expo-status-bar";
 import { useEffect } from "react";
+import { Stack } from "expo-router";
 
-export default function RootLayout() {
+import { RecipesProvider } from "@/context/RecipesContext";
+
+const RootLayout = () => {
   useEffect(() => {
     setTimeout(() => {
       setStatusBarStyle("light");
@@ -10,9 +12,14 @@ export default function RootLayout() {
   }, []);
 
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="+not-found" />
-    </Stack>
+    <RecipesProvider>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="recipe/[id]" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+    </RecipesProvider>
   );
-}
+};
+
+export default RootLayout;
