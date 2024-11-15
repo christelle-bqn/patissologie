@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     flexDirection: "column",
     alignItems: "center",
+    paddingVertical: 10,
   },
   title: {
     fontSize: 20,

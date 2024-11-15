@@ -44,25 +44,28 @@ const RecipeCard: FC<RecipeCardProps> = (props) => {
         />
 
         <View style={styles.info}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>{recipe.title}</Text>
-            <TouchableOpacity
-              onPress={handleBookmark}
-              activeOpacity={1}
-              hitSlop={20}
-            >
-              <Ionicons
-                name={recipe.bookmarked ? "bookmark" : "bookmark-outline"}
-                color="#a47a4b"
-                size={22}
-                style={styles.bookmarkButton}
-              />
-            </TouchableOpacity>
+          <View style={styles.textContainer}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.title}>{recipe.title}</Text>
+            </View>
+
+            <Text style={styles.details}>
+              {recipe.time.total} • {recipe.difficulty}
+            </Text>
           </View>
 
-          <Text style={styles.details}>
-            {recipe.time.total} • {recipe.difficulty}
-          </Text>
+          <TouchableOpacity
+            onPress={handleBookmark}
+            activeOpacity={1}
+            hitSlop={20}
+          >
+            <Ionicons
+              name={recipe.bookmarked ? "bookmark" : "bookmark-outline"}
+              color="#a47a4b"
+              size={22}
+              style={styles.bookmarkButton}
+            />
+          </TouchableOpacity>
         </View>
       </Link>
     </View>
@@ -92,6 +95,12 @@ const styles = StyleSheet.create({
   info: {
     padding: 12,
     width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  textContainer: {
+    flexShrink: 1,
   },
   titleContainer: {
     flexDirection: "row",
@@ -104,7 +113,8 @@ const styles = StyleSheet.create({
     color: "#1a1a1a",
   },
   bookmarkButton: {
-    marginLeft: 8,
+    alignSelf: "flex-end",
+    marginRight: 8,
   },
   details: {
     marginTop: 4,
